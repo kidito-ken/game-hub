@@ -3,6 +3,7 @@ import * as React from "react"
 import * as ReactDOM from "react-dom/client"
 import { ChakraProvider } from '@chakra-ui/react'
 import  App  from "./App"
+import theme from './theme'
 import reportWebVitals from "./reportWebVitals"
 import * as serviceWorker from "./serviceWorker"
 
@@ -14,7 +15,8 @@ const root = ReactDOM.createRoot(container)
 root.render(
   <React.StrictMode>
     <ColorModeScript />
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
+      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       <App />
     </ChakraProvider>
   </React.StrictMode>,
