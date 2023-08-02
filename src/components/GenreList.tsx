@@ -1,8 +1,12 @@
-import { HStack, List, ListItem, VStack, Image, Text } from '@chakra-ui/react'
+import { HStack, List, ListItem, VStack, Image, Text, Button } from '@chakra-ui/react'
 import useData from '../hooks/useData'
 import useGenres, { Genre } from '../hooks/useGenres'
 
-const GenreList = () => {
+export interface GenreListProps{
+    onSelectGenre: (genre: Genre) => void
+}
+
+const GenreList = ({onSelectGenre}:GenreListProps) => {
     const {data }=useGenres()
   return (
 
@@ -10,7 +14,7 @@ const GenreList = () => {
             {data.map(genre => <ListItem key={genre.id} padding={1}>
                 <HStack>
                     <Image boxSize='32px' borderRadius={8} src={genre.image_background}/>
-                    <Text fontSize={'lg'}>{genre.name}</Text>
+                    <Button onClick={()=> onSelectGenre(genre)} variant={'link'} fontSize={'lg'}>{genre.name}</Button>
                 </HStack></ListItem>)}
         </List>
         
